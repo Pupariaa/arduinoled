@@ -9,7 +9,7 @@ class Arduinoled{
         this.serialPort = null;
     }
 
-    async initialize() {
+    async instance() {
 
         if (this.pid && this.vid) {
             if((this.pid).lenght > 4){
@@ -23,6 +23,7 @@ class Arduinoled{
           
             const ports = await SerialPort.list();
             const portInfo = ports.find(port => port.vendorId === this.vid && port.productId === this.pid);
+            console.table(portInfo)
             
             if (!portInfo) {
                 console.error(`Unable to connect to VID_${this.vid}&PID_${this.pid}`);
@@ -79,10 +80,13 @@ class Arduinoled{
     };
 
     const device = new Arduinoled(options);
+
     try {
-        await device.initialize();
-        device.write('efgefef');
+        await device.instance().then(()=>{
+            device.write('abcd');
+        })
     } catch (error) {
         console.error('Error:', error);
     }
+
 })();
