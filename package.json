@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "@serialport/parser-readline": "^12.0.0",
+    "path": "^0.12.7",
+    "serialport": "^12.0.0",
+    "systeminformation": "^5.22.6"
+  },
+  "name": "arduinold",
+  "version": "1.0.0",
+  "description": "write text on oled screen on arduino 32u4 (leonardo)",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "arduino",
+    "I2C",
+    "series",
+    "oled",
+    "screen",
+    "text",
+    "write",
+    "send",
+    "listen"
+  ],
+  "author": "Pupariaa",
+  "license": "MIT"
+}
