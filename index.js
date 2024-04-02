@@ -7,6 +7,32 @@ class Arduinoled{
         this.vid = options.vid || null;
         this.port = options.port || null;
         this.serialPort = null;
+        this.xCursor = options.xCursor || 0;
+        this.yCursor = options.yCursor || 0;
+        this.textSize = options.textSize || 1;
+
+        if(options.xCursor){
+            if(!typeof(options.xCursor) === "number"){
+                console.error('Cursor X position must be an integer')
+                this.xCursor = 0
+            }
+        }
+
+        if(options.yCursor){
+            if(!typeof(options.yCursor) === "number"){
+                console.error('Cursor Y position must be an integer')
+                this.yCursor = 0
+            }
+        }
+
+        if(options.textSize){
+            if(!typeof(options.textSize) === "number"){
+                console.error('Text Size must be an integer')
+                this.textSize = 0
+            }
+        }
+
+
     }
 
     async instance() {
@@ -61,11 +87,35 @@ class Arduinoled{
         }
     }
 
-    write(donnees) {
-        this.serialPort.write(donnees, (err) => {
+    write(content, xCursor = null, yCursor = null, textSize = null) {
+        
+        if(xCursor){
+            if(!typeof(xCursor) === "number"){
+                console.error('Cursor X position must be an integer')
+                return
+            }
+        }
+
+        if(yCursor){
+            if(!typeof(yCursor) === "number"){
+                console.error('Cursor Y position must be an integer')
+                return
+            }
+        }
+
+        if(textSize){
+            if(!typeof(textSize) === "number"){
+                console.error('Text Size must be an integer')
+                return
+            }
+        }
+
+        const messageFormate = `%!!${content}!!%%..${xCursor ? xCursor : this.xCursor},${yCursor ? yCursor : this.yCursor},${textSize ? textSize : this.textSize}..%\n`;
+        this.serialPort.write(messageFormate, (err) => {
             if (err) {
                 return console.log('Cannot send to device: ', err.message);
             }
+            console.log('Message sent: ', messageFormate);
         });
     }
 }
@@ -83,7 +133,7 @@ class Arduinoled{
 
     try {
         await device.instance().then(()=>{
-            device.write('abcd');
+            device.write('lgkrnzejigernzg', 0,0,1);
         })
     } catch (error) {
         console.error('Error:', error);
