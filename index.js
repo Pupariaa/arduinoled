@@ -110,7 +110,7 @@ class Arduinoled{
             }
         }
 
-        const messageFormate = `%!!${content}!!%%..${xCursor ? xCursor : this.xCursor},${yCursor ? yCursor : this.yCursor},${textSize ? textSize : this.textSize}..%\n`;
+        const messageFormate = `£^${content}£^ù$${xCursor ? xCursor : this.xCursor},${yCursor ? yCursor : this.yCursor},${textSize ? textSize : this.textSize}ù$\n`;
         this.serialPort.write(messageFormate, (err) => {
             if (err) {
                 return console.log('Cannot send to device: ', err.message);

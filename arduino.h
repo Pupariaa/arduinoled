@@ -21,8 +21,8 @@ void setup() {
 void loop() {
   if (Serial.available() > 0) {
     String message = Serial.readStringUntil('\n');
-    String content = extractData(message, "!!", "!!");
-    String params = extractData(message, "..", "..");
+    String content = extractData(message, "£^", "£^");
+    String params = extractData(message, "ù$", "ù$");
 
     int xCursor = getValue(params, ',', 0).toInt();
     int yCursor = getValue(params, ',', 1).toInt();
