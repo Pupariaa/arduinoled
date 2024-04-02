@@ -32,7 +32,7 @@ class Arduinoled{
             this.port = portInfo.path;
         } else {
             if(!/^COM\d{1,3}$/.test(this.port)){
-                console.error('The COM port should look like this "COM{numbler}".')
+                console.error('The COM port should look like this "COM[number]".')
                 return
             }
         }
